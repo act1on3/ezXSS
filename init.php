@@ -84,11 +84,12 @@ if (strpos($requestUrl, '/manage/') === 0 || strpos($requestUrl, '/manage') === 
     }
 } else {
     $route = new Route();
-
+    
     if ($requestUrl === '/callback') {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo $route->callback(file_get_contents('php://input'));
         }
+    }
     if($requestUrl == '/i') {
       header('Content-Type: application/x-javascript');
       echo $route->jsPayloadImport();
@@ -98,7 +99,7 @@ if (strpos($requestUrl, '/manage/') === 0 || strpos($requestUrl, '/manage') === 
       header('Content-Type: application/x-javascript');
       echo $route->jsPayloadImportScreen();
     }
-    } else {
+    else {
         header('Content-Type: application/x-javascript');
         echo $route->jsPayload();
     }
